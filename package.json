@@ -1,0 +1,23 @@
+{
+  "name": "alchemist-etl",
+  "version": "0.0.1",
+  "description": "A realtime ETL engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint **.js && spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blinkist/alchemist.git"
+  },
+  "keywords": [
+    "ETL",
+    "Serverless",
+    "AWS"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blinkist/alchemist/issues"
+  },
+  "homepage": "https://github.com/blinkist/alchemist#readme"
+}
