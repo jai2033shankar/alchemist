@@ -1,28 +1,44 @@
 {
-  "name": "alchemist-etl",
+  "name": "blinkist-alchemist",
   "version": "0.0.1",
-  "description": "A realtime ETL engine",
-  "main": "index.js",
-  "scripts": {
-    "test": "node_modules/.bin/eslint **.js && node_modules/.bin/mocha spec/**/*_spec.js"
+  "private": true,
+  "dependencies": {
+    "aws-sdk": "^2.7.24",
+    "chunk-array": "^1.0.2",
+    "devour-client": "^2.0.8",
+    "jsonwebtoken": "^8.2.1",
+    "jws": "^3.1.4",
+    "moment": "^2.22.1",
+    "redis": "^2.8.0",
+    "redis-clustr": "^1.5.2",
+    "stripe": "^5.1.1",
+    "xml2js": "^0.4.19"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/blinkist/alchemist.git"
-  },
-  "keywords": [
-    "ETL",
-    "Serverless",
-    "AWS"
-  ],
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/blinkist/alchemist/issues"
-  },
-  "homepage": "https://github.com/blinkist/alchemist#readme",
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "aws-sdk-mock": "^1.7.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browserify": "latest",
+    "chai": "^4.1.2",
+    "eslint": "latest",
     "eslint-config-google": "^0.9.1",
-    "mocha": "^5.1.1"
+    "flow-bin": "^0.70.0",
+    "mocha": "latest",
+    "mocha-webpack": "latest",
+    "serverless-plugin-existing-s3": "^2.0.3",
+    "serverless-webpack": "^3.1.2",
+    "sinon": "^4.1.2",
+    "underscore": "^1.8.3",
+    "util.promisify": "^1.0.0",
+    "webpack": "^3.8.1",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "scripts": {
+    "lint": "eslint --fix **.js",
+    "test": "eslint **.js && mocha-webpack --recursive --webpack-config webpack.config-test.js spec"
   }
 }
