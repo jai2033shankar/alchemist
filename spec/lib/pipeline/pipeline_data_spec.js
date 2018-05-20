@@ -7,7 +7,7 @@ describe('PipelineData', function(){
   describe('constructor', function(){
     it('should add data store', function(){
       let pipelineData = new PipelineData()
-      expect(pipelineData).to.have.all.keys('data')
+      expect(pipelineData).to.have.all.keys('data', 'invalidData')
     })
   })
 })
