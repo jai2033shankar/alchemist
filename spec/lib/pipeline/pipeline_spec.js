@@ -11,13 +11,13 @@ class Input {
 
 class Output {
   call() {
-    return [4, 5, 6]
+    return {data: [4, 5, 6]}
   }
 }
 
 class Transformation {
   call() {
-    return [10, 11, 12]
+    return {data: [10, 11, 12]}
   }
 }
 
@@ -31,14 +31,15 @@ describe('Pipeline', function() {
   it('should run output', async function() {
     let output = new Output()
     let pipeline = new Pipeline({output: output})
-    expect(await pipeline.call()).to.have.same.members([4, 5, 6])
+
+    expect(await pipeline.call()).to.deep.eq({data: {}, invalidData: {} })
   })
 
   it('should run transformations', async function() {
     let input = new Input()
     let transformation = new Transformation()
     let pipeline = new Pipeline({input: input, transformations: [transformation]})
-    expect(await pipeline.call()).to.have.same.members([10, 11, 12])
+    expect(await pipeline.call()).to.deep.eq({data: [10, 11, 12]})
   })
 })
 
