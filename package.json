@@ -1,7 +1,11 @@
 {
   "name": "alchemist-etl",
   "version": "0.0.1",
-  "private": true,
+  "main": "lib/index.js",
+  "license": "ISC",
+  "publishConfig": {
+    "registery": "https://registery.npmjs.org"
+  },
   "dependencies": {
     "aws-sdk": "^2.7.24",
     "chunk-array": "^1.0.2"
@@ -26,6 +30,8 @@
   },
   "scripts": {
     "lint": "eslint --fix **.js",
-    "test": "eslint **.js && mocha-webpack --recursive --webpack-config webpack.config-test.js spec"
+    "test": "eslint **.js && mocha-webpack --recursive --webpack-config webpack.config-test.js spec",
+    "build":"webpack --config webpack.config-prod.js src/index.js",
+    "prepublish": "npm test && npm run build"
   }
 }
