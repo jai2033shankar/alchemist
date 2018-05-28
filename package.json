@@ -1,6 +1,6 @@
 {
   "name": "alchemist-etl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/index.js",
   "license": "ISC",
   "publishConfig": {
@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "aws-sdk-mock": "^1.7.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
@@ -31,7 +32,7 @@
   "scripts": {
     "lint": "eslint --fix **.js",
     "test": "eslint **.js && mocha-webpack --recursive --webpack-config webpack.config-test.js spec",
-    "build":"webpack --config webpack.config-prod.js src/index.js",
+    "build": "babel -s inline -d lib src",
     "prepublish": "npm test && npm run build"
   }
 }
