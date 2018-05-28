@@ -1,4 +1,4 @@
-import {PipelineData} from '../../../lib'
+import {PipelineData} from '../../../src'
 import chai from 'chai'
 
 var expect = chai.expect

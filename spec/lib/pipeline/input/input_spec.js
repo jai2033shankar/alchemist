@@ -1,5 +1,5 @@
-import {Input} from '../../../../lib'
-import {AdapterRegistry, S3FileInput} from '../../../../lib'
+import {Input} from '../../../../src'
+import {AdapterRegistry, S3FileInput} from '../../../../src'
 import chai from 'chai'
 
 let expect = chai.expect
