@@ -1,4 +1,6 @@
 # Alchemist
+Alchemy is a philosophical and protoscientific tradition practiced throughout
+Europe, Africa and Asia. It aimed to purify, mature, and perfect certain objects.
 
 ## Development
 ```
