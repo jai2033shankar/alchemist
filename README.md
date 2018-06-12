@@ -29,7 +29,7 @@ To see a more detailed implementation please check the example [job](example/app
 ### 1. Define an input
 
 
-### 2. Deine transoformation(s)
+### 2. Define transformation(s)
 TODO
 
 ### 3. Define Output
