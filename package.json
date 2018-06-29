@@ -2,7 +2,7 @@
   "name": "alchemist-etl",
   "version": "0.0.5",
   "main": "lib/index.js",
-  "license": "ISC",
+  "license": "MIT",
   "publishConfig": {
     "registery": "https://registery.npmjs.org"
   },
