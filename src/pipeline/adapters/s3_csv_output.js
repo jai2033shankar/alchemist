@@ -13,7 +13,7 @@ export default class S3FileOutput {
 
   async write(pipelineData) {
     let body = await pipelineData.getData()
-    let items = body.items
+    let items = body
     let replacer = (key, value) => value === null ? '' : value
     let header = Object.keys(items[0])
     let csv = items.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
