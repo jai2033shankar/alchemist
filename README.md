@@ -1,92 +1,97 @@
-# Alchemist
 ![Alchemist](./alchemist.png)
 
-Alchemy is a philosophical and protoscientific tradition practiced throughout Europe, Africa and Asia. It aimed to purify, mature, and perfect certain objects.
+# Alchemist
 
-Data is the most important asset you have. Analyzing it can give you priceless insights into your customers, product and a sense of direction with any decision. But, Data manipulation and analysis comes with a predefined set of problems:
+Alchemist is an AWS Lambda powered ETL (**E**xtract, **T**ransform, **L**oad) engine focused on managing data coming from multiple sources, in an efficient and streamlined way, by using pipelines.
 
-1. Loading the data from different sources and with different triggers
-2. Cleaning and Transforming the data to suitable formats
-3. Writing this data in a format that is suitable for the next stage or engine
+If your data-related needs oscillate around any of the following:
 
-And then with big data comes the problem of cost...
+1. loading data from multiple sources, reacting to triggers,
+2. clean-up and transformation to desired format,
+3. formatting data between stages and engines in a custom data processing workflow,
+
+then Alchemist will be the right tool for you!
+
+[![NPM Version](https://img.shields.io/npm/v/alchemist.svg)](https://www.npmjs.com/package/alchemist)
+[![CircleCI](https://circleci.com/gh/blinkist/blinkist-alchemist.svg?style=svg&circle-token=08df91bc5aa51170735bc5a9b654365fc0de774c)](https://circleci.com/gh/blinkist/blinkist-alchemist)
 
 
-## Another ETL engine?
+## The concept of Alchemist
 
-Alchemist was built with 2 main goals in mind:
-1. Being lightweight: include in any JavaScript code and use.
-2. Being Flexible: Use the provided adapters or create your own.
+Alchemist was designed with 2 goals in mind:
 
-The typical flow for an ETL engine is:
-- E(xtract): Read data from a certain source
-- T(ransform): Manipulate the data in a single or multiple steps
-- L(load): Load the data in a format suitable for the next consuming engine or for analysis.
+1. *Be lightweight*: Alchemist can be installed and used in any JavaScript project.
+2. *Be flexible*: Alchemist comes with built-in adapters, while being extensible with custom adapters as needed.
 
-And with alchemist you get the additional distinction of passing an object of Valid and Invalid data between steps so you can:
-- access the data
-- manipulate it
+While the typical flow of data in an ETL engine is:
 
-The full flow is demonstrated in the following diagram:
+- E(xtract): read data from source,
+- T(ransform): process the data,
+- L(load): load the data into the next processing stage or engine,
+
+Alchemist offers more flexibility, by storing both valid (parseable) and invalid (malformed) data between steps in a pipeline. This distinction allows for deeper and more detailed processing of _valid_ data, while keeping seemingly _invalid_ data safely stored for further analysis and improvements.
+
+The full data processing pipeline is demonstrated in the following diagram:
+
 ![alchemist_pipeline](./alchemist_pipeline.png)
 
-## How to define a pipeline
-The typical usage of alchemist is in the form of jobs. Each job will define a single pipeline consisting of input, transformation(s), output.
+## Installation TODO
 
-### Assumptions
-We will make a couple of assumptions to define the context of our functions execution:
-1. Our code will be executed as an AWS lambda
-2. The lambda function triggers a handler that initializes a class defining our job
-3. The lambda function will pass 2 main params:
-    - context: The exeuction context
-    - event: The details of the event that triggered our handler
+Use `npm` to add the dependency in your `package.json` file:
 
-### Input
+    $ npm install alchemist
 
-Let's start by selecting and configuring a Kinesis stream input
+Or install it globally with:
+
+    $ npm install --global alchemist
+
+## Usage
+
+Each pipeline is an AWS Lambda function, e.g.:
+
 ```javascript
-let input = Input.instanceFor(this.adapterRegistry, 'KinesisInput', { events: this.event.events() })
+async call() {
+  // Step 1: Define input from Kinesis:
+  let input = Input.instanceFor(this.adapterRegistry, 'KinesisInput', { events: this.event.events() })
 
+  // Step 2: Define transformations sequence:
+  let transformations = [
+    Transformation.instanceFor(this.adapterRegistry, 'FirstEventTransformation'),
+    Transformation.instanceFor(this.adapterRegistry, 'SecondEventTransformation'),
+    Transformation.instanceFor(this.adapterRegistry, 'ThirdEventTransformation')
+  ]
+
+  // Step 3: Define output to Kinesis:
+  let output = Output.instanceFor(this.adapterRegistry, 'KinesisOutput', {stream_name: 'output-kinesis-stream'})
+
+  // Step 4: Use console for invalid output
+  // Note: ConsoleOutput is a preregistered Adapter!
+  let invalidOutput = Output.instanceFor(this.adapterRegistry, 'ConsoleOutput', { })
+
+  // Step 5: Execute the pipeline:
+  let pipeline = new Pipeline({
+    input:            input,
+    transformations:  transformations,
+    output:           output,
+    invalidOutput:    invalidOutput
+  })
+
+  await pipeline.call()
+}
 ```
-### Transformations
 
-The next step is to define our transformations
-```javascript
-let transformations = [
-  Transformation.instanceFor(this.adapterRegistry, 'PinpointEventTransformation')
-]
-```
-### Output
-
-The last step is to define our output and for simplicity we will write to another kinesis stream.
-```javascript
-let output = Output.instanceFor(this.adapterRegistry, 'KinesisOutput', {stream_name: stream_name})
-```
-
-### Pipeline
-
-Having all our parts defined we can now execute them by running
-```javascript
-let pipeline = new Pipeline({
-input: input,
-transformations: transformations,
-output: output,
-invalidOutput: invalidOutput
-})
-
-await pipeline.call()
-
-```
-For a complete example please [check](example/app/services/pintpoint_service.js)
+[Review a complete example](example/app/services/pintpoint_service.js) to learn more about the complete pipeline structure.
 
 ## Development
-```bash
-yarn install
-```
-### Running tests
-```bash
-docker-compose run --rm test
-```
+
+After checking out the repo, run `yarn install` to install dependencies. Then, run `docker-compose run --rm test` to run the tests.
+
+To install this library onto your local machine, run `npm install`. To release a new version, run `npm version <update_type>` to update the version number in `package.json`, and then run `npm publish`, which will push the library to [npmjs.com](https://www.npmjs.com/).
+
 ## License
 
 The npm package is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Code of Conduct
+
+Everyone interacting in the Alchemist project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/blinkist/alchemist/blob/master/CODE_OF_CONDUCT.md).
