@@ -1,8 +1,10 @@
-![Alchemist](./alchemist.png)
-
 # Alchemist
+[![NPM Version](https://img.shields.io/npm/v/alchemist.svg)](https://www.npmjs.com/package/alchemist)
+[![CircleCI](https://circleci.com/gh/blinkist/blinkist-alchemist.svg?style=svg&circle-token=08df91bc5aa51170735bc5a9b654365fc0de774c)](https://circleci.com/gh/blinkist/blinkist-alchemist)
 
 Alchemist is an AWS Lambda powered ETL (**E**xtract, **T**ransform, **L**oad) engine focused on managing data coming from multiple sources, in an efficient and streamlined way, by using pipelines.
+
+![Alchemist](./alchemist.png)
 
 If your data-related needs oscillate around any of the following:
 
@@ -11,9 +13,6 @@ If your data-related needs oscillate around any of the following:
 3. formatting data between stages and engines in a custom data processing workflow,
 
 then Alchemist will be the right tool for you!
-
-[![NPM Version](https://img.shields.io/npm/v/alchemist.svg)](https://www.npmjs.com/package/alchemist)
-[![CircleCI](https://circleci.com/gh/blinkist/blinkist-alchemist.svg?style=svg&circle-token=08df91bc5aa51170735bc5a9b654365fc0de774c)](https://circleci.com/gh/blinkist/blinkist-alchemist)
 
 
 ## The concept of Alchemist
@@ -34,6 +33,10 @@ Alchemist offers more flexibility, by storing both valid (parseable) and invalid
 The full data processing pipeline is demonstrated in the following diagram:
 
 ![alchemist_pipeline](./alchemist_pipeline.png)
+
+### Additional resources
+
+A more in depth look about [how we use alchemist](https://www.slideshare.net/SebastianSchleicher/tracking-and-business-intelligence)
 
 ## Installation TODO
 
