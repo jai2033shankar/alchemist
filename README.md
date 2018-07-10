@@ -1,5 +1,5 @@
 # Alchemist
-Alchemist is an AWS Lambda powered ETL (**E**xtract, **T**ransform, **L**oad) engine focused on managing data coming from multiple sources, in an efficient and streamlined way, by using pipelines.
+Alchemist is an JavaScript ETL(**E**xtract, **T**ransform, **L**oad) engine focused on managing data coming from multiple sources, in an efficient and streamlined way, by using pipelines.
 ![Alchemist](./alchemist.png)
 
 [![NPM Version](https://img.shields.io/npm/dm/alchemist-etl.svg)](https://img.shields.io/npm/dm/alchemist-etl.svg)
@@ -35,7 +35,7 @@ The full data processing pipeline is demonstrated in the following diagram:
 
 ![alchemist_pipeline](./alchemist_pipeline.png)
 
-### Additional resources
+## Additional resources
 
 A more in depth look about [how we use alchemist](https://www.slideshare.net/SebastianSchleicher/tracking-and-business-intelligence)
 
