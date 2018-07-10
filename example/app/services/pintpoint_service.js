@@ -33,18 +33,17 @@ export default class PinpointService {
 
 
   buildInput() {
-    return Input.instanceFor(this.adapterRegistry, 'KinesisInput', { events: this.event.events() });
+    return Input.instanceFor(this.adapterRegistry, 'KinesisInput', { events: this.event.events() })
   }
 
   buildOutput() {
     let stream_name = "my-kinesis-stream"
-
-    return new Output(this.adapterRegistry, 'KinesisOutput', {stream_name: stream_name})
+    return Output.instanceFor(this.adapterRegistry, 'KinesisOutput', {stream_name: stream_name})
   }
 
   buildTranformations() {
     return [
-      new Transformation(this.adapterRegistry, 'PinpointEventTransformation')
+      Transformation.instanceFor(this.adapterRegistry, 'PinpointEventTransformation')
     ]
   }
 }
