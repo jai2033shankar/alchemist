@@ -2,7 +2,7 @@
 Alchemist is an JavaScript ETL(**E**xtract, **T**ransform, **L**oad) engine focused on managing data coming from multiple sources, in an efficient and streamlined way, by using pipelines.
 ![Alchemist](./alchemist.png)
 
-[![NPM Version](https://img.shields.io/npm/dm/alchemist-etl.svg)](https://img.shields.io/npm/dm/alchemist-etl.svg)
+[![NPM Version](https://img.shields.io/npm/dm/alchemist-etl.svg)](https://www.npmjs.com/package/alchemist-etl)
 [![CircleCI](https://circleci.com/gh/blinkist/blinkist-alchemist.svg?style=svg&circle-token=08df91bc5aa51170735bc5a9b654365fc0de774c)](https://circleci.com/gh/blinkist/blinkist-alchemist)
 
 
