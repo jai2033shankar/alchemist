@@ -14,14 +14,19 @@ export default class S3AvroInput {
 
   async read(pipelineData) {
     await this.loadFile()
-
     let decoder = new avro.streams.BlockDecoder()
 
     let records = this.avroFileStream.pipe(decoder)
-      .on('data', function (record) {
-        console.log(record)
-      })
 
+    await new Promise(function(resolve, reject) {
+      records
+        .on('data', function (record) {
+          pipelineData.putData(record)
+        })
+        .on('end', function() {
+          resolve('done')
+        })
+    })
     return pipelineData
   }
 

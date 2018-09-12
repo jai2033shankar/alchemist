@@ -37,7 +37,7 @@ describe('AvroInput', async () => {
       let pipelineData = new PipelineData()
       let s3avro_input = new S3AvroInput({})
       let result = await s3avro_input.read(pipelineData)
-      console.log(result)
+      expect(result.data.id).equal('5a6514de-ce66-47d7-a9b5-9fe690c2e392')
     })
   })
 })
