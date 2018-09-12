@@ -1,10 +1,15 @@
 import promisify from 'util.promisify'
 import avro from 'avro-js'
-import fs from 'fs'
+import AWS from 'aws-sdk'
 
-export default class AvroInput {
+var S3 = new AWS.S3()
+
+export default class S3AvroInput {
   constructor(opts) {
-    this.avroFilePath = opts.avroFilePath
+    this.params = {
+      Bucket: opts.bucket,
+      Key: opts.key,
+    }
   }
 
   async read(pipelineData) {
@@ -17,7 +22,7 @@ export default class AvroInput {
   }
 
   async loadFile() {
-    this.avroFile = await fs.createReadStream(this.avroFilePath)
+    this.avroFile = await s3.getObject(this.params).createReadStream()
   }
 }
 
