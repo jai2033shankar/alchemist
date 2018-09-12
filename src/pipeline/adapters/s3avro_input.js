@@ -2,7 +2,7 @@ import promisify from 'util.promisify'
 import avro from 'avro-js'
 import AWS from 'aws-sdk'
 
-var S3 = new AWS.S3()
+export const S3 = new AWS.S3()
 
 export default class S3AvroInput {
   constructor(opts) {
@@ -15,14 +15,19 @@ export default class S3AvroInput {
   async read(pipelineData) {
     await this.loadFile()
 
-    this.avroFile.pipe(new avro.streams.BlockDecoder())
-      .on('data', async (record) => pipelineData.putData(record))
+    let decoder = new avro.streams.BlockDecoder()
+
+    let records = this.avroFileStream.pipe(decoder)
+      .on('data', function (record) {
+        console.log(record)
+      })
 
     return pipelineData
   }
 
   async loadFile() {
-    this.avroFile = await s3.getObject(this.params).createReadStream()
+    let avroFile = await S3.getObject(this.params).promise()
+    this.avroFileStream = await avroFile.createReadStream()
   }
 }
 
