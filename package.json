@@ -1,12 +1,13 @@
 {
   "name": "alchemist-etl",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "license": "MIT",
   "publishConfig": {
     "registery": "https://registery.npmjs.org"
   },
   "dependencies": {
+    "avro-js": "^1.8.2",
     "aws-sdk": "^2.7.24",
     "chunk-array": "^1.0.2"
   },
