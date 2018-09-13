@@ -14,20 +14,24 @@ export default class S3AvroInput {
 
   async read(pipelineData) {
     await this.loadFile()
-    let decoder = new avro.streams.BlockDecoder()
 
-    let records = this.avroFileStream.pipe(decoder)
+    let decoder = new avro.streams.BlockDecoder()
+    let recordsStream = this.avroFileStream.pipe(decoder)
+
     // NOTE: A hack that is fixed in nodejs 10 please check:
     // http://2ality.com/2018/04/async-iter-nodejs.html
-    await new Promise(function(resolve, reject) {
-      records
+    let records = await new Promise(function(resolve, reject) {
+      let records = []
+      recordsStream
         .on('data', function (record) {
-          pipelineData.putData(record)
+          records.push(record)
         })
         .on('end', function() {
-          resolve('done')
+          resolve(records)
         })
     })
+
+    pipelineData.putData(records)
     return pipelineData
   }
 
