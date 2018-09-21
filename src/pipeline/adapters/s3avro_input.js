@@ -36,7 +36,7 @@ export default class S3AvroInput {
   }
 
   async loadFile() {
-    let avroFile = await S3.getObject(this.params).promise()
+    let avroFile = await S3.getObject(this.params)
     this.avroFileStream = await avroFile.createReadStream()
   }
 }

@@ -18,7 +18,6 @@ describe('AvroInput', async () => {
     let avroFilePath = path.resolve(__dirname, '../../../spec/fixtures/avro.avro')
 
     stub(S3, 'getObject').returns({
-      promise: () => { return Promise.resolve({
         AcceptRanges: 'bytes',
         LastModified: new Date('2018-04-25T13:32:58.000Z'),
         ContentLength: 23,
@@ -27,7 +26,6 @@ describe('AvroInput', async () => {
         Metadata: {},
         Body: Buffer.from('Test file\n'),
         createReadStream: () => { return require("fs").createReadStream(avroFilePath) }
-      })}
     })
   })
 
