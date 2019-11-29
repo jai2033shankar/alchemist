@@ -1,11 +1,13 @@
 import S3Event from './s3_event';
 import KinesisEvent from './kinesis_event';
+import SQSEvent from './sqs_event';
 
 export default class EventRegistry {
   constructor() {
     this.events = {
       S3Event,
-      KinesisEvent
+      KinesisEvent,
+      SQSEvent
     }
   }
 

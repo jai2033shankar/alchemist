@@ -269,6 +269,13 @@ atob@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.1.tgz#ae2d5a729477f289d60dd7f96a6314a22dd6c22a"
 
+avro-js@^1.8.2:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/avro-js/-/avro-js-1.9.1.tgz#19105e0619de19b317839ec43205de0a15ad03ce"
+  integrity sha512-U2Rh7MsaZ4GT5IT0+5dfmmGfi1D1YA6EXXuM+TpUI76yZWO8zhsi2+it+QKdP+rezu9tevpljhOiFRgZDy6aMA==
+  dependencies:
+    underscore "*"
+
 aws-sdk-mock@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/aws-sdk-mock/-/aws-sdk-mock-1.7.0.tgz#7698b3ba82f493f71ff060ae2123cd0806ad8676"
@@ -3778,6 +3785,11 @@ uglifyjs-webpack-plugin@^0.4.6:
     source-map "^0.5.6"
     uglify-js "^2.8.29"
     webpack-sources "^1.0.1"
+
+underscore@*:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
+  integrity sha512-5/4etnCkd9c8gwgowi5/om/mYO5ajCaOgdzj/oW+0eQV9WxKBDZw5+ycmKmeaTXjInS/W0BzpGLo2xR2aBwZdg==
 
 underscore@^1.8.3:
   version "1.9.0"
