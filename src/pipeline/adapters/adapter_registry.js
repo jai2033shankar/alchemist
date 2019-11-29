@@ -6,6 +6,7 @@ import ConsoleOutput from './console_output'
 import UnzipTransformation from './unzip_transformation'
 import CloudfrontLogTransformation from './cloudfront_log_transformation'
 import S3AvroInput from './s3avro_input'
+import SQSInput from './sqs_input'
 
 export default class AdapterRegistry {
   constructor() {
@@ -18,6 +19,7 @@ export default class AdapterRegistry {
       ConsoleOutput,
       UnzipTransformation,
       CloudfrontLogTransformation,
+      SQSInput,
     }
   }
 
